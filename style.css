@@ -77,10 +77,23 @@ header.scrolled {
 /* LOGO SYSTEM */
 .logo-wrapper {
   display: flex;
-  align-items: baseline;
+  align-items: center;
+  text-decoration: none;
   gap: 4px;
 }
 
+.logo-image {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s var(--ease-smooth);
+}
+
+.logo-wrapper:hover .logo-image {
+  transform: scale(1.05);
+}
+
+/* Keep text logo as fallback */
 .logo-text {
   font-size: 24px;
   font-weight: 700;
@@ -138,7 +151,161 @@ header.scrolled {
   box-shadow: var(--shadow-md);
 }
 
+/* ========================================
+   PRODUCTS DROPDOWN MENU
+======================================== */
+
+.nav-link-wrapper {
+  position: relative;
+}
+
+.products-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  padding: 16px 0;
+  min-width: 280px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s var(--ease-premium);
+  z-index: 100;
+  margin-top: 8px;
+}
+
+.nav-link-wrapper:hover .products-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.products-dropdown::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  background: white;
+  rotate: 45deg;
+  box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.dropdown-link {
+  display: block;
+  padding: 12px 24px;
+  color: var(--neutral-700);
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s var(--ease-smooth);
+  position: relative;
+  text-decoration: none;
+}
+
+.dropdown-link:hover {
+  background: var(--neutral-50);
+  color: var(--brand-orange);
+  padding-left: 32px;
+}
+
+.dropdown-link::before {
+  content: '';
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 2px;
+  background: var(--brand-orange);
+  transition: width 0.2s var(--ease-smooth);
+}
+
+.dropdown-link:hover::before {
+  width: 8px;
+  left: 20px;
+}
+
+.nav-link.has-dropdown::after {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 6px;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid currentColor;
+  transition: transform 0.3s var(--ease-smooth);
+}
+
+.nav-link-wrapper:hover .nav-link.has-dropdown::after {
+  transform: rotate(180deg);
+}
+
+/* ========================================
+   MOBILE MENU STYLES
+======================================== */
+
+.mobile-menu {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  right: 0;
+  background: var(--surface-white);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s var(--ease-premium);
+  z-index: 40;
+  max-height: calc(100vh - 70px);
+  overflow-y: auto;
+}
+
+.mobile-menu.active {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 0;
+}
+
+.mobile-nav-links .nav-link,
+.mobile-nav-links .nav-link-cta {
+  display: block;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  transition: all 0.3s var(--ease-smooth);
+}
+
+.mobile-nav-links .nav-link:hover {
+  background: var(--neutral-50);
+  padding-left: 28px;
+}
+
+.mobile-nav-links .nav-link-cta {
+  margin-top: 12px;
+  text-align: center;
+  border-bottom: none;
+  border-radius: 8px;
+}
+
 .mobile-menu-btn {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
   background: none;
   border: none;
   color: var(--neutral-800);
@@ -150,6 +317,34 @@ header.scrolled {
 
 .mobile-menu-btn:hover {
   background: var(--neutral-100);
+}
+
+.mobile-menu-btn svg {
+  transition: transform 0.3s var(--ease-smooth);
+}
+
+.mobile-menu-btn.active svg line:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+  transform-origin: center;
+}
+
+.mobile-menu-btn.active svg line:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-btn.active svg line:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+  transform-origin: center;
+}
+
+body.mobile-menu-open {
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .mobile-menu {
+    display: none;
+  }
 }
 
 /* ========================================
@@ -414,6 +609,12 @@ header.scrolled {
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.6);
   font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .scroll-indicator {
+    display: none;
+  }
 }
 
 /* ========================================
