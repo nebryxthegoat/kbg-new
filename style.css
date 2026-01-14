@@ -293,13 +293,14 @@ header.scrolled {
 .mobile-nav-links .nav-link,
 .mobile-nav-links .nav-link-cta {
   display: block;
-  padding: 14px 24px;
+  padding: 12px 28px;
   font-size: 15px;
   font-weight: 500;
   transition: all 0.2s ease;
   position: relative;
   border: none;
   background: transparent;
+  text-align: left;
 }
 
 .mobile-nav-links .nav-link {
