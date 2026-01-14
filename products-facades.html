@@ -13,24 +13,40 @@
   <!-- HEADER -->
   <header class="fixed w-full top-0 z-50">
     <div class="max-w-7xl mx-auto px-6 lg:px-8 py-5 flex items-center justify-between">
+      
+      <!-- LOGO -->
       <a href="index.html" class="logo-wrapper">
-        <span class="logo-text">KBG</span>
-        <span class="logo-tagline">Group</span>
+        <img src="KBG_logo.jpg" alt="KBG Group" class="logo-image" />
       </a>
+
+      <!-- DESKTOP NAV -->
       <nav class="hidden md:flex items-center gap-8 text-[14px] font-medium tracking-wide">
-        <a href="index.html" class="nav-link">Home</a>
         <a href="about.html" class="nav-link">About</a>
-        <a href="products.html" class="nav-link" style="color: var(--brand-orange);">Products</a>
+        
+        <div class="nav-link-wrapper">
+          <a href="products.html" class="nav-link has-dropdown">Products</a>
+          <div class="products-dropdown">
+            <a href="products-facades.html" class="dropdown-link">Architectural Facades</a>
+            <a href="products-noise-control.html" class="dropdown-link">Noise Control Systems</a>
+            <a href="products-ventilation.html" class="dropdown-link">Ventilation Louvers</a>
+            <a href="products-air-distribution.html" class="dropdown-link">Air Distribution</a>
+            <a href="products-dampers.html" class="dropdown-link">Control & Safety Dampers</a>
+          </div>
+        </div>
+        
         <a href="projects.html" class="nav-link">Projects</a>
-        <a href="index.html#contact" class="nav-link-cta">Contact Us</a>
+        <a href="#contact" class="nav-link-cta">Contact Us</a>
       </nav>
-      <button class="md:hidden mobile-menu-btn">
+
+      <!-- MOBILE MENU BUTTON -->
+      <button class="md:hidden mobile-menu-btn" aria-label="Toggle menu">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <line x1="3" y1="12" x2="21" y2="12"></line>
           <line x1="3" y1="6" x2="21" y2="6"></line>
           <line x1="3" y1="18" x2="21" y2="18"></line>
         </svg>
       </button>
+
     </div>
   </header>
 
