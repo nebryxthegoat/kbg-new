@@ -154,6 +154,18 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       
       header.appendChild(mobileMenu);
+
+// Create backdrop
+const backdrop = document.createElement('div');
+backdrop.className = 'mobile-menu-backdrop';
+document.body.appendChild(backdrop);
+
+// Close menu when clicking backdrop
+backdrop.addEventListener('click', () => {
+  mobileMenu.classList.remove('active');
+  mobileMenuBtn.classList.remove('active');
+  document.body.classList.remove('mobile-menu-open');
+});
     }
     
     // Toggle menu
