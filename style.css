@@ -191,6 +191,7 @@ header.scrolled {
 }
 
 .hero-content {
+  padding-top: 6rem;
   animation: heroFadeIn 1.2s var(--ease-premium);
 }
 
