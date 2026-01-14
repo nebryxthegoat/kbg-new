@@ -131,14 +131,48 @@ window.addEventListener("scroll", () => {
   }
 });
 
-// MOBILE MENU TOGGLE (if needed in future)
-const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-if (mobileMenuBtn) {
-  mobileMenuBtn.addEventListener('click', () => {
-    // Add mobile menu functionality here if needed
-    console.log('Mobile menu clicked');
-  });
-}
+// MOBILE MENU TOGGLE
+document.addEventListener("DOMContentLoaded", () => {
+  const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+  const header = document.querySelector('header');
+
+  if (mobileMenuBtn) {
+    // Create mobile menu if it doesn't exist
+    let mobileMenu = document.querySelector('.mobile-menu');
+    
+    if (!mobileMenu) {
+      mobileMenu = document.createElement('div');
+      mobileMenu.className = 'mobile-menu';
+      
+      // Clone the desktop nav
+      const desktopNav = document.querySelector('nav.hidden');
+      if (desktopNav) {
+        const navClone = desktopNav.cloneNode(true);
+        navClone.classList.remove('hidden', 'md:flex');
+        navClone.classList.add('mobile-nav-links');
+        mobileMenu.appendChild(navClone);
+      }
+      
+      header.appendChild(mobileMenu);
+    }
+    
+    // Toggle menu
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+      mobileMenuBtn.classList.toggle('active');
+      document.body.classList.toggle('mobile-menu-open');
+    });
+    
+    // Close menu when clicking a link
+    mobileMenu.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') {
+        mobileMenu.classList.remove('active');
+        mobileMenuBtn.classList.remove('active');
+        document.body.classList.remove('mobile-menu-open');
+      }
+    });
+  }
+});
 
 // ENHANCED HOVER EFFECTS FOR PROJECT IMAGES
 document.addEventListener("DOMContentLoaded", () => {
